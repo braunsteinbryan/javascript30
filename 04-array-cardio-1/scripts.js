@@ -53,22 +53,76 @@ const orderOfAges = inventors.sort(function(firstPerson, secondPerson) {
 
 // const ordered = inventors.sort((a,b) => firstPerson.year > secondPerson.year ? 1 : -1);
 
-console.table(orderOfAges)
+// console.table(orderOfAges)
 
 // Array.prototype.reduce()
 // 4. How many years did all the inventors live all together?
 
+const yearsLived = inventors.reduce((total, inventor) => {
+    return total + (inventor.passed - inventor.year);
+}, 0);
 
+// console.log(yearsLived)
 
 // 5. Sort the inventors by years lived
+
+const oldest = inventors.sort(function(a, b) {
+    const lastGuy = a.passed - a.year;
+    const nextGuy = b.passed - b.year;
+
+
+
+    // if (lastGuy > nextGuy) {
+    //     return -1;
+    // } else {
+    //     return 1;
+    // }
+
+    // ###@ TERNARY INSTEAD @###
+    return lastGuy > nextGuy ? -1 : 1;
+});
+
+// console.table(oldest)
 
 // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
 // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
 
 
+// const category = document.querySelector('.mw-category');
+// const links = Array.from(category.querySelectorAll('a'));
+
+// const de = links
+//             .map(link => link.textContent)
+//             .filter(streetName => streetName.includes('de'));
+
+// console.log(de)
+
+// @## RUN IN  BROWSER CONSOLE ON WIKI PAGE ##@
+
+
+
 // 7. sort Exercise
 // Sort the people alphabetically by last name
+
+const alpha = people.sort((lastOne, nextOne) => {
+    const [aLast, aFirst] = lastOne.split(', ');
+    const [bLast, bFirst] = lastOne.split(', ');
+    return aLast > bLast ? 1 : -1;
+});
+
+// console.log(alpha)
 
 // 8. Reduce Exercise
 // Sum up the instances of each of these
 const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck'];
+
+
+const sumOfTransportation = data.reduce(function(obj, item) {
+    if (!obj[item]) {
+        obj[item] = 0;
+    }
+    obj[item]++;
+    return obj;
+}, {});
+
+console.log(sumOfTransportation)
