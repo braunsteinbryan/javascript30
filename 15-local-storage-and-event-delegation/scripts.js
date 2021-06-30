@@ -12,7 +12,7 @@ function addItem(e) {
     };
 
     items.push(item);
-    populateList(items, itemList);
+    populateList(items, itemsList);
     localStorage.setItem('items', JSON.stringify(items));
     this.reset();
 }
